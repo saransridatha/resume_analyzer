@@ -1,0 +1,1 @@
+We are looking for a React Developer with experience in JavaScript, React, and Node.js. TypeScript experience is a plus.

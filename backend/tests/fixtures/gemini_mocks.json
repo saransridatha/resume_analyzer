@@ -1,0 +1,377 @@
+{
+  "mocks": [
+    {
+      "id": "standard-react-match",
+      "filename": "standard_dev.pdf",
+      "atsScore": 85,
+      "breakdown": {
+        "keywords": 25,
+        "skills": 25,
+        "experience": 20,
+        "formatting": 15
+      },
+      "parsedDetails": {
+        "name": "John Doe",
+        "email": "john.doe@example.com",
+        "skills": ["JavaScript", "React", "Node.js"],
+        "experienceYears": 5
+      },
+      "geminiFeedback": {
+        "overallFeedback": "Excellent match for the React role. Consider emphasizing TypeScript.",
+        "missingSkills": ["TypeScript"],
+        "bulletPointOptimizations": [
+          {
+            "original": "Worked on a React application.",
+            "optimized": "Architected a high-performance React dashboard with Redux Toolkit, reducing state update latency by 45%."
+          }
+        ]
+      }
+    },
+    {
+      "id": "standard-docx-match",
+      "filename": "standard_dev.docx",
+      "atsScore": 85,
+      "breakdown": {
+        "keywords": 25,
+        "skills": 25,
+        "experience": 20,
+        "formatting": 15
+      },
+      "parsedDetails": {
+        "name": "John Doe",
+        "email": "john.doe@example.com",
+        "skills": ["JavaScript", "React", "Node.js"],
+        "experienceYears": 5
+      },
+      "geminiFeedback": {
+        "overallFeedback": "Excellent match for the React role. Consider emphasizing TypeScript.",
+        "missingSkills": ["TypeScript"],
+        "bulletPointOptimizations": [
+          {
+            "original": "Worked on a React application.",
+            "optimized": "Architected a high-performance React dashboard with Redux Toolkit, reducing state update latency by 45%."
+          }
+        ]
+      }
+    },
+    {
+      "id": "standard-backend-match",
+      "filename": "standard_dev.pdf",
+      "atsScore": 70,
+      "breakdown": {
+        "keywords": 20,
+        "skills": 18,
+        "experience": 20,
+        "formatting": 12
+      },
+      "parsedDetails": {
+        "name": "John Doe",
+        "email": "john.doe@example.com",
+        "skills": ["JavaScript", "React", "Node.js"],
+        "experienceYears": 5
+      },
+      "geminiFeedback": {
+        "overallFeedback": "Good developer, but lacks some core backend capabilities.",
+        "missingSkills": ["Go", "Kubernetes"],
+        "bulletPointOptimizations": [
+          {
+            "original": "Built backend APIs.",
+            "optimized": "Designed and implemented robust Node.js microservices handling 10k requests/min with Redis caching."
+          }
+        ]
+      }
+    },
+    {
+      "id": "no-skills",
+      "filename": "no_skills.pdf",
+      "atsScore": 30,
+      "breakdown": {
+        "keywords": 5,
+        "skills": 5,
+        "experience": 10,
+        "formatting": 10
+      },
+      "parsedDetails": {
+        "name": "No Skills Candidate",
+        "email": "noskills@example.com",
+        "skills": [],
+        "experienceYears": 1
+      },
+      "geminiFeedback": {
+        "overallFeedback": "Candidate does not have standard resume skills.",
+        "missingSkills": ["JavaScript", "React", "Node.js"],
+        "bulletPointOptimizations": []
+      }
+    },
+    {
+      "id": "scanned-pdf",
+      "filename": "non_ascii.pdf",
+      "atsScore": 0,
+      "breakdown": {
+        "keywords": 0,
+        "skills": 0,
+        "experience": 0,
+        "formatting": 0
+      },
+      "parsedDetails": {
+        "name": "Unknown Candidate",
+        "email": "unknown@example.com",
+        "skills": [],
+        "experienceYears": 0
+      },
+      "geminiFeedback": {
+        "overallFeedback": "No text could be extracted from this scanned resume.",
+        "missingSkills": [],
+        "bulletPointOptimizations": []
+      }
+    },
+    {
+      "id": "perfect-resume",
+      "filename": "perfect_resume.pdf",
+      "atsScore": 100,
+      "breakdown": {
+        "keywords": 30,
+        "skills": 30,
+        "experience": 25,
+        "formatting": 15
+      },
+      "parsedDetails": {
+        "name": "Perfect Candidate",
+        "email": "perfect@example.com",
+        "skills": ["JavaScript", "React", "Node.js", "TypeScript", "Docker", "Kubernetes"],
+        "experienceYears": 10
+      },
+      "geminiFeedback": {
+        "overallFeedback": "Perfect fit for the role. Strong credentials and achievements.",
+        "missingSkills": [],
+        "bulletPointOptimizations": [
+          {
+            "original": "Led the team.",
+            "optimized": "Spearheaded a cross-functional engineering team of 12, boosting release velocity by 40%."
+          }
+        ]
+      }
+    },
+    {
+      "id": "skills-only",
+      "filename": "skills_only.pdf",
+      "atsScore": 45,
+      "breakdown": {
+        "keywords": 15,
+        "skills": 30,
+        "experience": 0,
+        "formatting": 0
+      },
+      "parsedDetails": {
+        "name": "Skills Only",
+        "email": "skills@example.com",
+        "skills": ["React", "JavaScript", "HTML", "CSS"],
+        "experienceYears": 0
+      },
+      "geminiFeedback": {
+        "overallFeedback": "Resume contains only a skills block without professional experience or formatting.",
+        "missingSkills": [],
+        "bulletPointOptimizations": []
+      }
+    },
+    {
+      "id": "code-snippet",
+      "filename": "code_snippet.pdf",
+      "atsScore": 80,
+      "breakdown": {
+        "keywords": 25,
+        "skills": 20,
+        "experience": 20,
+        "formatting": 15
+      },
+      "parsedDetails": {
+        "name": "Code Snippet Dev",
+        "email": "code@example.com",
+        "skills": ["React", "JavaScript"],
+        "experienceYears": 3
+      },
+      "geminiFeedback": {
+        "overallFeedback": "Good developer. Clean code examples.",
+        "missingSkills": [],
+        "bulletPointOptimizations": [
+          {
+            "original": "Added a <div> React element.",
+            "optimized": "Created highly modularized React functional components resulting in a 25% code footprint reduction."
+          }
+        ]
+      }
+    },
+    {
+      "id": "long-bullet",
+      "filename": "long_bullet.pdf",
+      "atsScore": 75,
+      "breakdown": {
+        "keywords": 20,
+        "skills": 20,
+        "experience": 20,
+        "formatting": 15
+      },
+      "parsedDetails": {
+        "name": "Long Bullet Dev",
+        "email": "long@example.com",
+        "skills": ["React"],
+        "experienceYears": 4
+      },
+      "geminiFeedback": {
+        "overallFeedback": "Good developer, but bullets are way too long and verbose.",
+        "missingSkills": [],
+        "bulletPointOptimizations": [
+          {
+            "original": "Worked on a React application for a client in the financial industry where we had a lot of data tables and I had to spend a lot of time optimization performance and rendering times of these components so that they load faster when users scroll down the page.",
+            "optimized": "Optimized React data tables rendering performance, reducing scroll latency by 35%."
+          }
+        ]
+      }
+    },
+    {
+      "id": "custom-bullets",
+      "filename": "custom_bullets.pdf",
+      "atsScore": 75,
+      "breakdown": {
+        "keywords": 20,
+        "skills": 20,
+        "experience": 20,
+        "formatting": 15
+      },
+      "parsedDetails": {
+        "name": "Custom Bullets",
+        "email": "custom@example.com",
+        "skills": ["React"],
+        "experienceYears": 3
+      },
+      "geminiFeedback": {
+        "overallFeedback": "Standard profile, but uses custom bullet points.",
+        "missingSkills": [],
+        "bulletPointOptimizations": [
+          {
+            "original": "⭐ Designed database",
+            "optimized": "Architected normalized PostgreSQL schema, reducing query execution times by 20%."
+          }
+        ]
+      }
+    },
+    {
+      "id": "optimal-bullets",
+      "filename": "optimal_bullets.pdf",
+      "atsScore": 90,
+      "breakdown": {
+        "keywords": 25,
+        "skills": 25,
+        "experience": 25,
+        "formatting": 15
+      },
+      "parsedDetails": {
+        "name": "Optimal Bullets",
+        "email": "optimal@example.com",
+        "skills": ["React"],
+        "experienceYears": 5
+      },
+      "geminiFeedback": {
+        "overallFeedback": "Excellent resume. Bullets are already highly optimal and structured.",
+        "missingSkills": [],
+        "bulletPointOptimizations": [
+          {
+            "original": "Led a team of 4 to build React app, reducing load time by 30%.",
+            "optimized": "Led a team of 4 to build React app, reducing load time by 30%."
+          }
+        ]
+      }
+    },
+    {
+      "id": "candidate-a",
+      "filename": "candidate_a.pdf",
+      "atsScore": 88,
+      "breakdown": {
+        "keywords": 28,
+        "skills": 25,
+        "experience": 20,
+        "formatting": 15
+      },
+      "parsedDetails": {
+        "name": "Candidate A",
+        "email": "canda@example.com",
+        "skills": ["JavaScript", "React", "Node.js", "Redux"],
+        "experienceYears": 6
+      },
+      "geminiFeedback": {
+        "overallFeedback": "Strong React developer.",
+        "missingSkills": [],
+        "bulletPointOptimizations": []
+      }
+    },
+    {
+      "id": "candidate-b",
+      "filename": "candidate_b.pdf",
+      "atsScore": 42,
+      "breakdown": {
+        "keywords": 10,
+        "skills": 12,
+        "experience": 10,
+        "formatting": 10
+      },
+      "parsedDetails": {
+        "name": "Candidate B",
+        "email": "candb@example.com",
+        "skills": ["HTML", "CSS"],
+        "experienceYears": 1
+      },
+      "geminiFeedback": {
+        "overallFeedback": "Lacks the required React / JavaScript experience.",
+        "missingSkills": ["React", "JavaScript", "Node.js"],
+        "bulletPointOptimizations": []
+      }
+    },
+    {
+      "id": "docker-k8s-match",
+      "filename": "standard_dev.pdf",
+      "atsScore": 80,
+      "breakdown": {
+        "keywords": 22,
+        "skills": 23,
+        "experience": 20,
+        "formatting": 15
+      },
+      "parsedDetails": {
+        "name": "John Doe",
+        "email": "john.doe@example.com",
+        "skills": ["JavaScript", "React", "Node.js"],
+        "experienceYears": 5
+      },
+      "geminiFeedback": {
+        "overallFeedback": "Good match, but missing Docker and Kubernetes skills.",
+        "missingSkills": ["Docker", "Kubernetes"],
+        "bulletPointOptimizations": [
+          {
+            "original": "Worked on deployment.",
+            "optimized": "Containerized React application with Docker and orchestrated deployment via Kubernetes, ensuring 99.9% uptime."
+          }
+        ]
+      }
+    }
+  ],
+  "defaultFallback": {
+    "atsScore": 50,
+    "breakdown": {
+      "keywords": 15,
+      "skills": 15,
+      "experience": 10,
+      "formatting": 10
+    },
+    "parsedDetails": {
+      "name": "Unknown Candidate",
+      "email": "candidate@example.com",
+      "skills": [],
+      "experienceYears": 0
+    },
+    "geminiFeedback": {
+      "overallFeedback": "Generic assessment: resume lacks standard keywords and structure.",
+      "missingSkills": [],
+      "bulletPointOptimizations": []
+    }
+  }
+}

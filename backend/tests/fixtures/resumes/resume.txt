@@ -1,0 +1,4 @@
+This is a plain text resume file.
+John Doe
+john.doe@example.com
+React Developer

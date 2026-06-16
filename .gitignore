@@ -34,3 +34,9 @@ TEST_INFRA.md
 
 # Agent tracking files
 .agents/
+
+# Local databases and uploads
+app-data/
+backend/data/
+*.sqlite
+*.db

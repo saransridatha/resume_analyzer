@@ -4,7 +4,7 @@ import crypto from 'crypto';
 import { fileURLToPath } from 'url';
 import { extractTextFromPdf, extractTextFromDocx } from '../services/parserService.js';
 import { analyzeResumeWithGemini } from '../services/geminiService.js';
-import { readDb, writeDb } from '../models/analysisModel.js';
+import Analysis from '../models/Analysis.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -54,26 +54,30 @@ export async function analyzeResume(req, res, next) {
           parsedDetails: { name: 'Unknown Candidate', email: 'unknown@example.com', skills: [], experienceYears: 0 },
           geminiFeedback: {
             overallFeedback: 'Graceful fallback: failed to parse AI feedback correctly.',
+            actionVerbsScore: 0,
+            metricsScore: 0,
+            coverLetterDraft: '',
             missingSkills: [],
             bulletPointOptimizations: []
           }
         };
         // Persist to history
-        const history = readDb();
-        history.push({
+        await Analysis.create({
           id: mockRes.id,
+          userId: req.user.id,
           filename: mockRes.filename,
+          filepath: req.file.path,
           timestamp: mockRes.timestamp,
-          atsScore: mockRes.atsScore
+          score: mockRes.atsScore,
+          details: mockRes
         });
-        writeDb(history);
         return res.json(mockRes);
       }
     }
 
     let baseResponse = null;
 
-    if (process.env.MOCK_GEMINI === 'false') {
+    if (process.env.MOCK_GEMINI === 'true') {
       // Load gemini mocks
       let mocksData = { mocks: [], defaultFallback: {} };
       if (fs.existsSync(MOCKS_PATH)) {
@@ -146,11 +150,12 @@ export async function analyzeResume(req, res, next) {
       }
     } else {
       // Live mode - Parse resume text
+      const fileBuffer = fs.readFileSync(req.file.path);
       let extractedText = '';
       if (ext === '.pdf') {
-        extractedText = await extractTextFromPdf(req.file.buffer);
+        extractedText = await extractTextFromPdf(fileBuffer);
       } else if (ext === '.docx') {
-        extractedText = await extractTextFromDocx(req.file.buffer);
+        extractedText = await extractTextFromDocx(fileBuffer);
       }
 
       // Check for empty extracted text (e.g. scanned/non-selectable PDF or blank doc)
@@ -182,10 +187,20 @@ export async function analyzeResume(req, res, next) {
 
     // If JD is empty or whitespace-only (TC-T1-F1-005, TC-T2-F3-003)
     const isJdEmpty = !jobDescription || jobDescription.trim().length === 0;
-    let geminiFeedback = baseResponse.geminiFeedback || { overallFeedback: '', missingSkills: [], bulletPointOptimizations: [] };
+    let geminiFeedback = baseResponse.geminiFeedback || { 
+      overallFeedback: '', 
+      actionVerbsScore: 5,
+      metricsScore: 5,
+      coverLetterDraft: '',
+      missingSkills: [], 
+      bulletPointOptimizations: [] 
+    };
     if (isJdEmpty) {
       geminiFeedback = {
         overallFeedback: 'Omitted job description analysis.',
+        actionVerbsScore: typeof geminiFeedback.actionVerbsScore === 'number' ? geminiFeedback.actionVerbsScore : 5,
+        metricsScore: typeof geminiFeedback.metricsScore === 'number' ? geminiFeedback.metricsScore : 5,
+        coverLetterDraft: '',
         missingSkills: [],
         bulletPointOptimizations: geminiFeedback.bulletPointOptimizations || []
       };
@@ -205,26 +220,18 @@ export async function analyzeResume(req, res, next) {
     };
 
     // Save to history
-    const history = readDb();
-    history.push({
+    await Analysis.create({
       id: uuid,
+      userId: req.user.id,
       filename: filename,
+      filepath: req.file.path,
       timestamp: timestamp,
-      atsScore: score
+      score: score,
+      details: result
     });
-    writeDb(history);
-
-    // Clean up memory buffer
-    if (req.file && req.file.buffer) {
-      req.file.buffer = null;
-    }
 
     return res.json(result);
   } catch (err) {
-    // Clean up memory buffer in case of error too
-    if (req.file && req.file.buffer) {
-      req.file.buffer = null;
-    }
     next(err);
   }
 }

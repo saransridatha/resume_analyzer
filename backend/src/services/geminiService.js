@@ -35,6 +35,9 @@ const responseSchema = {
       type: 'OBJECT',
       properties: {
         overallFeedback: { type: 'STRING', description: "Overall feedback on the resume and its fit for the job" },
+        actionVerbsScore: { type: 'INTEGER', description: "Score from 0 to 10 on the candidate's use of strong action verbs" },
+        metricsScore: { type: 'INTEGER', description: "Score from 0 to 10 on the candidate's inclusion of quantifiable metrics and numbers" },
+        coverLetterDraft: { type: 'STRING', description: "A tailored draft cover letter. Must be empty if no job description is provided." },
         missingSkills: {
           type: 'ARRAY',
           items: { type: 'STRING' },
@@ -53,7 +56,7 @@ const responseSchema = {
           description: "List of bullet point optimizations. If no bullet points are found in the resume, this must be empty."
         }
       },
-      required: ["overallFeedback", "missingSkills", "bulletPointOptimizations"]
+      required: ["overallFeedback", "actionVerbsScore", "metricsScore", "coverLetterDraft", "missingSkills", "bulletPointOptimizations"]
     }
   },
   required: ["atsScore", "breakdown", "parsedDetails", "geminiFeedback"]
@@ -80,19 +83,23 @@ Follow these rules:
    - experience (out of 25): depth, duration, and progression of role responsibilities.
    - formatting (out of 15): scanability, layout conventions, bullets usage.
    - Total ATS Score is the sum of these four components. Clamp the total score between 0 and 100, and ensure all breakdown sub-scores are non-negative and clamped to their respective maximums (keywords <= 30, skills <= 30, experience <= 25, formatting <= 15).
-3. If a job description is provided:
+3. Evaluate Action Verbs: give actionVerbsScore (0-10) based on strong verb usage.
+4. Evaluate Quantifiable Metrics: give metricsScore (0-10) based on use of numbers/percentages.
+5. If a job description is provided:
    - Identify missingSkills: important technical/functional skills mentioned in the JD that are not in the resume.
    - Tailor the overallFeedback to how well the resume aligns with the JD.
-4. If the job description is empty, missing, or only whitespace:
+   - Generate a coverLetterDraft that is a concise, professional cover letter tailored to the JD.
+6. If the job description is empty, missing, or only whitespace:
    - missingSkills must be an empty array [].
+   - coverLetterDraft must be an empty string "".
    - overallFeedback should be a general assessment of the resume.
-5. Provide bulletPointOptimizations:
+7. Provide bulletPointOptimizations:
    - Select up to 5 bullet points from the resume that can be improved.
    - Rewrite each using the XYZ formula: Accomplished [X] as measured by [Y], by doing [Z].
    - If no bullet points are found in the resume, return an empty array [].
    - Every optimized bullet point must contain metrics, reducing, or % patterns.
    - If the bullet points are already highly optimal, return the original bullet point unchanged for both original and optimized fields.
-6. Clean output: do not include markdown or backticks in the response. Return strictly structured JSON matching the provided schema.`;
+10. Clean output: do not include markdown or backticks in the response. Return strictly structured JSON matching the provided schema.`;
 
   const userPrompt = `RESUME TEXT:
 ${resumeText}

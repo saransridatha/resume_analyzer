@@ -51,15 +51,7 @@ export default function Layout({ children, currentView, setCurrentView }) {
  </button>
  ))}
  </nav>
- <div className="p-4 border-t border-slate-200 ">
- <button 
- onClick={toggleTheme}
- className="w-full flex items-center justify-between px-4 py-2 border border-slate-200 rounded-lg text-sm cursor-pointer"
- >
- <span>{theme === 'dark' ? 'Dark Mode' : 'Light Mode'}</span>
- {theme === 'dark' ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
- </button>
- </div>
+
  </aside>
 
  {/* Mobile Drawer (AnimatePresence) */}
@@ -108,15 +100,7 @@ export default function Layout({ children, currentView, setCurrentView }) {
  </button>
  ))}
  </nav>
- <div className="p-4 border-t border-slate-200 ">
- <button 
- onClick={toggleTheme}
- className="w-full flex items-center justify-between px-4 py-2 border border-slate-200 rounded-lg text-sm cursor-pointer"
- >
- <span>Toggle Theme</span>
- {theme === 'dark' ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
- </button>
- </div>
+
  </motion.aside>
  </>
  )}

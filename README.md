@@ -1,6 +1,6 @@
 # AI Resume Analyzer & ATS Scoring Platform
 
-![AI Resume Analyzer Cover](./media/dashboard.png)
+![AI Resume Analyzer Cover](./media/cover.png)
 
 A modern, full-stack AI-powered platform designed to analyze resumes, score them against Applicant Tracking Systems (ATS) criteria, and provide actionable optimization feedback utilizing the Google Gemini API.
 
